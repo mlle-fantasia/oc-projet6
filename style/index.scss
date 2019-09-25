@@ -59,6 +59,31 @@ h2 {
 .player6 {
 	background-image: url("../images/player6.jpg");
 }
+.img-player-grid {
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	background-position: center;
+}
+.player1figure {
+	background-image: url("../images/player1figure.png");
+}
+.player2figure {
+	background-image: url("../images/player2figure.png");
+}
+.player3figure {
+	background-image: url("../images/player3figure.png");
+}
+.player4figure {
+	background-image: url("../images/player4figure.png");
+}
+.player5figure {
+	background-image: url("../images/player5figure.png");
+}
+.player6figure {
+	background-image: url("../images/player6figure.png");
+}
 :checked + label {
 	border: solid 2px #a01515;
 	box-shadow: -1px 0 5px 0px #654442;
@@ -103,6 +128,7 @@ h2 {
 .btn-start-game {
 	width: 30%;
 	background-color: #a01515;
+	color: #fff;
 }
 ///////// nombre de player //////
 .select-nb-player {

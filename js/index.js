@@ -7,36 +7,58 @@ import Potion from "./classes/Potion";
 import Armor from "./classes/Armor";
 import choicePlayerHTML from "../choixPlayer.js";
 
-let app = new App(2, "forest");
-console.log("app", app.grid);
 let nbPlayer = 0;
+let players = [];
 let univers = "";
 
 $(document).ready(function() {
-	let newGrid = $("<div class='grid'></div>");
-	$(".world").append($(newGrid));
-	console.log("width test", $(".world").width() / 10);
-	render(app.grid);
 	$("#nbPlayer").change(() => {
 		nbPlayer = $("#nbPlayer").val();
-		if (nbPlayer > 1 && nbPlayer < 7) {
+		if (nbPlayer > 1 && nbPlayer < 5) {
 			showPlayerChoice(nbPlayer);
 		}
+		$("#btn-valider-player1").click(() => {
+			validPlayer("1");
+		});
+		$("#btn-valider-player2").click(() => {
+			validPlayer("2");
+		});
+		$("#btn-valider-player3").click(() => {
+			validPlayer("3");
+		});
+		$("#btn-valider-player4").click(() => {
+			validPlayer("4");
+		});
+		$("#btn-valider-player5").click(() => {
+			validPlayer("5");
+		});
+		$("#btn-valider-player6").click(() => {
+			validPlayer("6");
+		});
+	});
+
+	$("#btn-start-game").click(() => {
+		let newGrid = $("<div class='grid'></div>");
+		$(".world").append($(newGrid));
+		let app = new App(players, "forest");
+		render(app.grid);
 	});
 });
 function showPlayerChoice(nbPlayer) {
 	if ($(".container-choix-one-player").length) {
 		$(".container-choix-one-player").remove();
 	}
-	for (let i = 0; i < nbPlayer; i++) {
+	for (let i = 1; i <= nbPlayer; i++) {
 		let container = $("<div class='container-choix-one-player'></div>");
-		let title = $("<h2>Joueur " + (i + 1) + "</h2>");
-		let name = $("<label for='player" + i + "'>Votre nom</label> <input type='text' id='player" + i + "' name='player" + i + "'></input>");
-		let choice = showChoicePlayer(i + 1);
-		container.append($(title));
-		container.append($(name));
-		container.append($(choice));
-		$(".section-choix-player").append(container);
+		let sousContainer = $("<div class='container-choix-one-player" + i + "'></div>");
+		container.append($(sousContainer));
+		let title = $("<h2>Joueur " + i + "</h2>");
+		let name = $("<label for='player" + i + "'>Votre nom</label> <input type='text' id='player" + i + "name' name='player" + i + "'></input>");
+		let choice = showChoicePlayer(i);
+		sousContainer.append($(title));
+		sousContainer.append($(name));
+		sousContainer.append($(choice));
+		$(".section-choix-player").append(sousContainer);
 	}
 }
 function render(grid) {
@@ -49,7 +71,6 @@ function render(grid) {
 		for (let x = 0; x < line.length; x++) {
 			const cell = line[x];
 			let newCase = $("<div class='case' style='width:" + cellSize + "px;height:" + cellSize + "px'></div>");
-			console.log("cell.object", cell.object instanceof Player);
 			if (cell.object instanceof Player) {
 				renderPlayer(cell, newCase);
 			}
@@ -66,10 +87,19 @@ function render(grid) {
 }
 
 function renderPlayer(cell, newCase) {
-	let image = $("<img src='./marina-p6/images/player1.jpg' alt='player'>");
+	console.log("Cell", cell);
+	//let image = $("<img src='../images/player1.jpg' alt='player'>");
+	let image = $("<div class='img-player-grid " + cell.object.imageGrid + " '></div>");
 	newCase.append(image);
 }
-
+function validPlayer(numPlayer) {
+	let playerName = $("#player" + numPlayer + "name").val();
+	let playerHero = $("input[type=radio][name=player" + numPlayer + "]:checked").val();
+	playerHero = playerHero.substr(playerHero.length - 1);
+	let player = new Player(playerName, playerHero);
+	players.push(player);
+	$(".container-choix-one-player" + numPlayer).slideUp();
+}
 function showChoicePlayer(playerNumber) {
 	let choice =
 		"<div class='d-flex flex-row container-choix-player'>" +
@@ -151,6 +181,9 @@ function showChoicePlayer(playerNumber) {
 		"' class='label-player player6'></label>" +
 		"<span class='tooltiptext'>L'as de coeur</span>" +
 		"</div>" +
-		"</div>";
+		"</div>" +
+		"<button class='form-control btn-valider-player my-3' id='btn-valider-player" +
+		playerNumber +
+		"'>Prêt</button>";
 	return choice;
 }

@@ -6,8 +6,8 @@ export default class App {
 		this.initWorld(nbPlayer, univers);
 	}
 
-	initWorld(nbPlayer, univers) {
-		this.world = new World(nbPlayer, univers);
+	initWorld(players, univers) {
+		this.world = new World(players, univers);
 		this.grid = this.world.generateWorld();
 	}
 }

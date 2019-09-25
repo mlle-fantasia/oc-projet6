@@ -3,12 +3,12 @@ import Player from "./Player";
 
 export default class World {
 	constructor(players, univers) {
-		this.players = [{ nom: "machin", ptVie: 10 }, { nom: "truc", ptVie: 12 }];
+		this.players = players;
 		this.univers = univers;
 		this.nbWeapon = this.players.length;
 		this.nbObject = this.players.length;
-		this.worldSizeY = this.players.length * 5;
-		this.worldSizeX = this.players.length * 5;
+		this.worldSizeY = 10;
+		this.worldSizeX = 10;
 		this.grid = [];
 	}
 	generateWorld() {
@@ -34,17 +34,30 @@ export default class World {
 		let x = Math.floor(Math.random() * Math.floor(this.worldSizeX));
 		let y = Math.floor(Math.random() * Math.floor(this.worldSizeY));
 		if (this.isFreeCell(x, y)) {
-			let newPlayer = new Player(player.nom, player.ptVie);
-			let newCell = new Cell(this.univers, newPlayer);
+			//let newPlayer = new Player(player.nom, player.ptVie);
+			let newCell = new Cell(this.univers, player);
 			this.updateCell(x, y, newCell);
 		} else {
-			console.log("je repasse");
 			this.placeOnePlayer(player);
 		}
 	}
 	isFreeCell(x, y) {
 		let cell = this.grid[x][y];
-		if (cell.object.nom) {
+		let cellLeft,
+			cellRight,
+			cellTop,
+			cellBottom = cell;
+		if (x < this.worldSizeX - 1) cellRight = this.grid[x + 1][y];
+		if (x > 0) cellLeft = this.grid[x - 1][y];
+		if (y > 0) cellTop = this.grid[x][y - 1];
+		if (y < this.worldSizeY - 1) cellBottom = this.grid[x][y + 1];
+		if (
+			cell.object.nom ||
+			(cellLeft.object && cellLeft.object.nom) ||
+			(cellRight.object && cellRight.object.nom) ||
+			(cellTop.object && cellTop.object.nom) ||
+			(cellBottom.object && cellBottom.object.nom)
+		) {
 			return false;
 		} else {
 			return true;
