@@ -1,5 +1,134 @@
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import "../node_modules/bootstrap/scss/bootstrap";
+///////général//////
+.titre {
+	padding: 40px;
+}
+h2 {
+	font-size: 18px;
+}
+//////univers///////////
+.container-choix-univers {
+	justify-content: space-around;
+	.checkbox-univers {
+		align-items: center;
+	}
+}
+.label-univers {
+	margin-bottom: 0;
+	width: 100px;
+	height: 60px;
+	background-size: cover;
+}
+.univers1 {
+	background-image: url("../images/univers1.jpg");
+}
+.univers2 {
+	background-image: url("../images/univers2.jpg");
+}
+.univers3 {
+	background-image: url("../images/univers3.jpg");
+}
+/////////player ///////////////
+.container-choix-player {
+	justify-content: space-around;
+}
+.label-player {
+	margin-bottom: 0;
+	width: 100px;
+	height: 60px;
+	background-size: cover;
+}
+.checkbox {
+	align-items: center;
+}
+.player1 {
+	background-image: url("../images/player1.jpg");
+}
+.player2 {
+	background-image: url("../images/player2.jpg");
+}
+.player3 {
+	background-image: url("../images/player3.jpg");
+}
+.player4 {
+	background-image: url("../images/player4.jpg");
+}
+.player5 {
+	background-image: url("../images/player5.jpg");
+}
+.player6 {
+	background-image: url("../images/player6.jpg");
+}
+:checked + label {
+	border: solid 2px #a01515;
+	box-shadow: -1px 0 5px 0px #654442;
+}
+.checkbox-player {
+	position: relative;
+	display: inline-block;
+}
 
-h1 {
-  color: red;
+.checkbox-player .tooltiptext {
+	visibility: hidden;
+	width: 200px;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 50%;
+	left: 110%;
+	margin-left: -60px;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+/* .checkbox-player .tooltiptext::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+} */
+
+.checkbox-player:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}
+.btn-start-game {
+	width: 30%;
+	background-color: #a01515;
+}
+///////// nombre de player //////
+.select-nb-player {
+	width: 30%;
+	align-items: center;
+}
+/////////////le jeu/////////////
+.grid {
+}
+.line {
+	display: flex;
+	flex-direction: row;
+}
+.case {
+	border-left: solid 0.5px #5f4a4a;
+	border-bottom: solid 0.5px #5f4a4a;
+}
+.grass {
+	background-color: rgb(7, 216, 7);
+}
+.rock {
+	background-color: gray;
+}
+.lava {
+	background-color: red;
+}
+.tree {
+	background-color: green;
 }

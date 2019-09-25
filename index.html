@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Projet 6</title>
 </head>
+
 <body>
 
     <div id="app">
-        <h1>Jeu</h1>
+        <div class="container">
+
+            <h1 class="text-center mt-5 titre">Bienvenue</h1>
+            <section>
+                <h2>Choisissez votre univers</h2>
+                <div class="d-flex flex-row container-choix-univers">
+                    <div class="d-flex flex-column checkbox-univers">
+                        <input type="checkbox" id="univers1" name="univers1" hidden>
+                        <label for="univers1" class="label-univers univers1"></label>
+                        <p>la forêt de fangorn</p>
+                    </div>
+                    <div class="d-flex flex-column checkbox-univers">
+                        <input type="checkbox" id="univers2" name="univers2" hidden>
+                        <label for="univers2" class="label-univers univers2"></label>
+                        <p>le desert de sel</p>
+                    </div>
+                    <div class="d-flex flex-column checkbox-univers">
+                        <input type="checkbox" id="univers3" name="univers3" hidden>
+                        <label for="univers3" class="label-univers univers3"></label>
+                        <p>le pôle arctique</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Choisissez le nombre de joueur</h2>
+                <div class="d-flex flex-row align-center">
+                    <select name="nbPlayer" id="nbPlayer" class="select-nb-player">
+                        <option value="0">Choisir</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </section>
+            <section class="section-choix-player">
+            </section>
+            <div class="d-flex flex-row align-center">
+                <button class="form-control btn-start-game">Lancer le jeu ! </button>
+            </div>
+
+            <div class="world"></div>
+
+        </div>
     </div>
 
 
     <script src="js/index.js"></script>
 </body>
+
 </html>

@@ -1,13 +1,13 @@
-import Grid from './Grid'
+import World from "./classes/World";
+import config from "./conf.json";
 
 export default class App {
+	constructor(nbPlayer, univers) {
+		this.initWorld(nbPlayer, univers);
+	}
 
-  constructor(){
-    this.initGrid()
-  }
-
-  initGrid() {
-    this.grid = new Grid()
-    this.grid.generateCases()
-  }
+	initWorld(nbPlayer, univers) {
+		this.world = new World(nbPlayer, univers);
+		this.grid = this.world.generateWorld();
+	}
 }
