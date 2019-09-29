@@ -4,7 +4,7 @@ import $ from "jquery";
 import Player from "./classes/Player";
 import Weapon from "./classes/Weapon";
 import Potion from "./classes/Potion";
-import Armor from "./classes/Armor";
+import Obstacle from "./classes/Obstacle";
 import choicePlayerHTML from "../choixPlayer.js";
 
 let nbPlayer = 0;
@@ -17,31 +17,22 @@ $(document).ready(function() {
 		if (nbPlayer > 1 && nbPlayer < 5) {
 			showPlayerChoice(nbPlayer);
 		}
-		$("#btn-valider-player1").click(() => {
-			validPlayer("1");
-		});
-		$("#btn-valider-player2").click(() => {
-			validPlayer("2");
-		});
-		$("#btn-valider-player3").click(() => {
-			validPlayer("3");
-		});
-		$("#btn-valider-player4").click(() => {
-			validPlayer("4");
-		});
-		$("#btn-valider-player5").click(() => {
-			validPlayer("5");
-		});
-		$("#btn-valider-player6").click(() => {
-			validPlayer("6");
-		});
+		for (let index = 1; index <= nbPlayer; index++) {
+			$("#btn-valider-player" + index).click(() => {
+				validPlayer(index + "");
+			});
+		}
 	});
 
 	$("#btn-start-game").click(() => {
-		let newGrid = $("<div class='grid'></div>");
+		univers = $("input[type=radio][name=univers]:checked").val();
+		let newGrid = $("<div class='grid " + univers + "'></div>");
 		$(".world").append($(newGrid));
-		let app = new App(players, "forest");
-		render(app.grid);
+		console.log("player, univers", players, univers);
+		if (players && univers) {
+			let app = new App(players, univers);
+			render(app.grid);
+		}
 	});
 });
 function showPlayerChoice(nbPlayer) {
@@ -63,18 +54,18 @@ function showPlayerChoice(nbPlayer) {
 }
 function render(grid) {
 	let cellSize = $(".world").width() / grid.length;
-	let style = "grass";
 	for (let y = 0; y < grid.length; y++) {
 		const line = grid[y];
-		let newLine = $("<div class='" + style + " line'></div>");
+		let newLine = $("<div class='line'></div>");
 		$(".grid").append(newLine);
 		for (let x = 0; x < line.length; x++) {
 			const cell = line[x];
-			let newCase = $("<div class='case' style='width:" + cellSize + "px;height:" + cellSize + "px'></div>");
+			let newCase = $("<div class='case ' style='width:" + cellSize + "px;height:" + cellSize + "px'></div>");
 			if (cell.object instanceof Player) {
 				renderPlayer(cell, newCase);
 			}
-			if (cell.object instanceof Armor) {
+			if (cell.object instanceof Obstacle) {
+				renderPlayer(cell, newCase);
 			}
 			if (cell.object instanceof Weapon) {
 			}
@@ -92,10 +83,14 @@ function renderPlayer(cell, newCase) {
 	let image = $("<div class='img-player-grid " + cell.object.imageGrid + " '></div>");
 	newCase.append(image);
 }
+
 function validPlayer(numPlayer) {
-	let playerName = $("#player" + numPlayer + "name").val();
-	let playerHero = $("input[type=radio][name=player" + numPlayer + "]:checked").val();
-	playerHero = playerHero.substr(playerHero.length - 1);
+	//let playerName = $("#player" + numPlayer + "name").val();
+	//let playerHero = $("input[type=radio][name=player" + numPlayer + "]:checked").val();
+	let playerName = "Marina";
+	let playerHero = 2;
+	//playerHero = playerHero.substr(playerHero.length - 2);
+	//playerHero = playerHero.substr(0, 1);
 	let player = new Player(playerName, playerHero);
 	players.push(player);
 	$(".container-choix-one-player" + numPlayer).slideUp();

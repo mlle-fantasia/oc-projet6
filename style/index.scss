@@ -6,28 +6,7 @@
 h2 {
 	font-size: 18px;
 }
-//////univers///////////
-.container-choix-univers {
-	justify-content: space-around;
-	.checkbox-univers {
-		align-items: center;
-	}
-}
-.label-univers {
-	margin-bottom: 0;
-	width: 100px;
-	height: 60px;
-	background-size: cover;
-}
-.univers1 {
-	background-image: url("../images/univers1.jpg");
-}
-.univers2 {
-	background-image: url("../images/univers2.jpg");
-}
-.univers3 {
-	background-image: url("../images/univers3.jpg");
-}
+
 /////////player ///////////////
 .container-choix-player {
 	justify-content: space-around;
@@ -149,12 +128,48 @@ h2 {
 .grass {
 	background-color: rgb(7, 216, 7);
 }
-.rock {
+.salt-desert {
 	background-color: gray;
 }
-.lava {
-	background-color: red;
+.ice {
+	background-color: blue;
 }
 .tree {
 	background-color: green;
+}
+//////univers///////////
+.container-choix-univers {
+	justify-content: space-around;
+	.checkbox-univers {
+		align-items: center;
+	}
+}
+.label-univers {
+	margin-bottom: 0;
+	width: 100px;
+	height: 60px;
+	background-size: cover;
+}
+.univers-amazonie {
+	background-image: url("../images/amazonieImg.png");
+}
+.amazonie {
+	background-image: url("../images/amazonieBack.jpg");
+	.case {
+		border-left: solid 0.5px #cdd4e6;
+		border-bottom: solid 0.5px #cdd4e6;
+	}
+}
+.univers-ocean {
+	background-image: url("../images/oceanImg.jpg");
+}
+.ocean {
+	background-image: url("../images/oceanBack.jpg");
+	.case {
+		border-left: solid 0.5px #cdd4e6;
+		border-bottom: solid 0.5px #cdd4e6;
+	}
+}
+.oceanObs {
+	background-image: url("../images/oceanObs.jpg");
 }

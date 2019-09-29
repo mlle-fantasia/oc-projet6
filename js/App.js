@@ -2,8 +2,8 @@ import World from "./classes/World";
 import config from "./conf.json";
 
 export default class App {
-	constructor(nbPlayer, univers) {
-		this.initWorld(nbPlayer, univers);
+	constructor(players, univers) {
+		this.initWorld(players, univers);
 	}
 
 	initWorld(players, univers) {

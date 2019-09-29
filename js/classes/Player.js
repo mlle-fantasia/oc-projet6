@@ -1,6 +1,7 @@
 export default class Player {
 	constructor(nom, playerNum) {
 		const tabVariablePlayer = { ptVie: [10, 12, 14, 10, 12, 13], force: [10, 12, 14, 10, 12, 13] };
+		this.type = "player";
 		this.nom = nom;
 		this.playerNum = playerNum;
 		this.image = "player" + playerNum;
