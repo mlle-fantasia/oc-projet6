@@ -15,7 +15,7 @@
     "jquery": "^3.4.1"
   },
   "devDependencies": {
-    "parcel": "^1.12.3",
+    "parcel": "^2.8.2",
     "sass": "^1.22.12"
   }
 }
